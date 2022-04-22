@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  github-pages:
+  jekyll:
     runs-on: ubuntu-latest
     steps:
       # Checkout git branch
@@ -26,7 +26,11 @@ jobs:
             ${{ runner.os }}-gems-
       # Build the site and push new state to branch gh-pages
       - name: Build Jekyll Site
-        run: bundle exec jekyll build
+        uses: helaili/jekyll-action@2.3.1    # Choose any one of the Jekyll Actions
+        with:                                # Some relative inputs of your action
+          keep_history: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          build_only: true
 
       - name: Run Test Scripts
         run: | 
