@@ -46,6 +46,7 @@ plugins:
 exclude:
   - template.html
   - template.md
+  - assets/css/*.css # Exclude raw CSS files, force use of SCSS
 
 # Default Excludes:
 # Any file or directory starting with ._#~

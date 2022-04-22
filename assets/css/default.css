@@ -1,0 +1,7 @@
+/* Dummy file to suppress warnings. Please edit the default.scss file in the same directory */
+
+body {
+    /* Verification that this file is ignored.
+    If this ever shows up in a file, investigate file exclusion config.*/
+    background: hotpink;
+}
