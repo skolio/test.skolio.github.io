@@ -34,7 +34,6 @@ jobs:
 
       - name: Run Test Scripts
         run: | 
-          for f in *.sh; do \
+          for f in tests/*.sh; do \
             bash "$f" \
           done
-        working-directory: tests
