@@ -33,7 +33,4 @@ jobs:
           build_only: true
 
       - name: Run Test Scripts
-        run: | 
-          for f in tests/*.sh; do \
-            bash "$f" \
-          done
+        run: run_tests.sh
