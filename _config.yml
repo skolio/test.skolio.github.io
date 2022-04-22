@@ -44,8 +44,6 @@ plugins:
 # their entries' file path in the `include:` list.
 #
 exclude:
-  - template.html
-  - template.md
   - assets/css/*.css # Exclude raw CSS files, force use of SCSS
 
 # Default Excludes:
