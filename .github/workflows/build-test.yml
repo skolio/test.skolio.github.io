@@ -1,4 +1,4 @@
-name: Build and Deploy the site
+name: Build and Test the site without deployment
 
 # Controls when the workflow will run
 on:
