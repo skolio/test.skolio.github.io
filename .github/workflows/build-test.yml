@@ -33,4 +33,4 @@ jobs:
           build_only: true
 
       - name: Run Test Scripts
-        run: run_tests.sh
+        run: bash run_tests.sh
