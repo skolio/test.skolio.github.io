@@ -43,7 +43,12 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
+exclude:
+  - template.html
+  - template.md
+
+# Default Excludes:
+# Any file or directory starting with ._#~
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
