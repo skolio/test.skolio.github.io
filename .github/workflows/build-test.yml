@@ -32,5 +32,5 @@ jobs:
         run: | 
           for f in *.sh; do \
             bash "$f" \
-          done \
+          done
         working-directory: tests
