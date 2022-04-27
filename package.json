@@ -17,5 +17,8 @@
   "homepage": "https://github.com/skolio/skolio.github.io#readme",
   "devDependencies": {
     "cypress": "^9.6.0"
+  },
+  "dependencies": {
+    "typescript": "^4.6.3"
   }
 }
