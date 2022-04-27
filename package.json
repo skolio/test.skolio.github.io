@@ -1,0 +1,21 @@
+{
+  "name": "skolio-web",
+  "version": "0.0.1",
+  "description": "Web-presentation of the Skolio App",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skolio/skolio.github.io.git"
+  },
+  "author": "Skolio Web Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skolio/skolio.github.io/issues"
+  },
+  "homepage": "https://github.com/skolio/skolio.github.io#readme",
+  "devDependencies": {
+    "cypress": "^9.6.0"
+  }
+}
