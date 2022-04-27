@@ -32,5 +32,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           build_only: true
 
+      # Run static test scripts
       - name: Run Test Scripts
-        run: bash run_tests.sh
+        run: bash _site/run_tests.sh
