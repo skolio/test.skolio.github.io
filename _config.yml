@@ -43,7 +43,11 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
+exclude:
+  - assets/css/*.css # Exclude raw CSS files, force use of SCSS
+
+# Default Excludes:
+# Any file or directory starting with ._#~
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
