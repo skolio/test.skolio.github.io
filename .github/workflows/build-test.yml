@@ -26,18 +26,11 @@ jobs:
             ${{ runner.os }}-gems-
       # Build the site and push new state to branch gh-pages
       - name: Build Jekyll Site
-        uses: helaili/jekyll-action@2.3.1    # Choose any one of the Jekyll Actions
-        with:                                # Some relative inputs of your action
-          keep_history: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          build_only: true
+        run: bundle exec jekyll build
 
-      # Run static test scripts
-      #- name: Run Test Scripts
-      #  run: bash _site/run_tests.sh
-      - name: List directory structure - ls
-        run: ls -R
-      - name: List directory structure - find
-        run: find . -print
       - name: List directory structure - tree
         run: tree .
+
+      # Run static test scripts
+      - name: Run Test Scripts
+        run: bash _site/run_tests.sh
