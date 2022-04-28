@@ -18,26 +18,25 @@ jobs:
         uses: actions/checkout@v3
       # Cache gems
       - name: Cache Gems
+        id: cache-ruby
         uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-      # Build the site and push new state to branch gh-pages
-      - name: Build Jekyll Site
-        uses: helaili/jekyll-action@2.3.1    # Choose any one of the Jekyll Actions
-        with:                                # Some relative inputs of your action
-          keep_history: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          build_only: true
+
+      # If cache wasn't hit and restored, install dependencies
+      - name: Install Ruby dependencies
+        if: steps.cache-ruby.outputs.cache-hit != 'true'
+        run: gem install bundler && bundle install
+
+      # Build the site to produce output
+      - name: Build jekyll site
+        run: bundle exec jekyll build
 
       # Run static test scripts
       #- name: Run Test Scripts
       #  run: bash _site/run_tests.sh
-      #- name: List directory structure - ls
-      #  run: ls -R
-      #- name: List directory structure - find
-      #  run: find . -print
       - name: List directory structure of build target directory
-        run: tree ..
+        run: tree _site
