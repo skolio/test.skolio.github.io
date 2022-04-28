@@ -2,7 +2,7 @@ name: Build and Test the site without deployment
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push events for the main branch
+  # Triggers the workflow on pull requests for the main branch
   pull_request:
     branches: [ main ]
 
@@ -16,20 +16,13 @@ jobs:
       # Checkout git branch
       - name: Checkout
         uses: actions/checkout@v3
-      # Cache gems
-      - name: Cache Gems
-        id: cache-ruby
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
 
-      # If cache wasn't hit and restored, install dependencies
-      - name: Install Ruby dependencies
-        if: steps.cache-ruby.outputs.cache-hit != 'true'
-        run: gem install bundler && bundle install
+      # Automatic setup of Ruby environment and dependencies
+      - name: Perform Ruby Setup
+        uses: ruby/setup-ruby
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
 
       # Build the site to produce output
       - name: Build jekyll site
