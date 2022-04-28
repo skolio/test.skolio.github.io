@@ -6,6 +6,7 @@ set -e
 
 echo "Running static output tests from $PWD"
 
-for f in static_ouput_tests/*.sh; do
-  bash "$f"
+for f in _static_ouput_tests/*.sh; do
+  cd _site
+  bash "../$f"
 done
