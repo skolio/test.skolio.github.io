@@ -24,9 +24,9 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      # Build the site and serve it locally
+      # Build the site for static build output tests
       - name: Build jekyll site
-        run: bundle exec jekyll serve -w # Do not watch and rebuild, as tests shouldn't alter the source anyways
+        run: bundle exec jekyll build
 
       # Run static test scripts
       - name: Run Test Scripts
