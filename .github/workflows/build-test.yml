@@ -40,4 +40,4 @@ jobs:
       #- name: List directory structure - find
       #  run: find . -print
       - name: List directory structure of build target directory
-        run: tree ../jekyll_build
+        run: tree ..
