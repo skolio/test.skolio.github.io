@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ..
+#cd ..
 
 echo -n "Checking excluded files... "
 if files=$(grep "TAG_EXCLUDED_FILE" -r --exclude-dir tests); then
