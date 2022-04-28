@@ -35,9 +35,9 @@ jobs:
       # Run static test scripts
       #- name: Run Test Scripts
       #  run: bash _site/run_tests.sh
-      - name: List directory structure - ls
-        run: ls -R
-      - name: List directory structure - find
-        run: find . -print
-      - name: List directory structure - tree
-        run: tree .
+      #- name: List directory structure - ls
+      #  run: ls -R
+      #- name: List directory structure - find
+      #  run: find . -print
+      - name: List directory structure of build target directory
+        run: tree ../jekyll_build
