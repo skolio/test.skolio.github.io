@@ -19,7 +19,7 @@ jobs:
 
       # Automatic setup of Ruby environment and dependencies
       - name: Perform Ruby Setup
-        uses: ruby/setup-ruby
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
           bundler-cache: true
