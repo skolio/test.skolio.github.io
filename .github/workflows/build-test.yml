@@ -24,12 +24,11 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      # Build the site to produce output
+      # Build the site and serve it locally
       - name: Build jekyll site
-        run: bundle exec jekyll build
+        run: bundle exec jekyll serve -w # Do not watch and rebuild, as tests shouldn't alter the source anyways
 
       # Run static test scripts
-      #- name: Run Test Scripts
-      #  run: bash _site/run_tests.sh
-      - name: List directory structure of build target directory
-        run: tree _site
+      - name: Run Test Scripts
+        run: bash _site/run_tests.sh
+
