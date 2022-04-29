@@ -1,0 +1,43 @@
+name: Build the site and locally run Cypress tests
+
+# Controls when the workflow will run
+on:
+  # Allows the workflow to be called from another workflow
+  workflow_call:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Browser to run the tests on'
+        required: false
+      # Ideas for future inputs: test strategy (matrix of browsers, viewports etc.)
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout git branch
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Automatic setup of Ruby environment and dependencies
+      - name: Perform Ruby Setup
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+
+      # Automatic installation of node, modules, building and serving site
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v2
+        with:
+          # Run build before testing to ensure it completes before tests are started
+          build: bundle exec jekyll build
+          # Skip the build on serve. We already built it, and this saves time and avoids timing issues.
+          # Jekyll will produce a Build Warning, which can be safely ignored. I haven't found a way to silence it yet.
+          start: bundle exec jekyll serve --skip-initial-build --no-watch
+        # Environment variables for matrix testing, such as viewport size etc.
+        #env:
+        #  CYPRESS_VIEWPORT_WIDTH: Foo
+        #  CYPRESS_VIEWPORT_HEIGHT: Bar

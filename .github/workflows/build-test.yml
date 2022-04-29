@@ -8,9 +8,18 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      # Allows you to control whether to run Cypress Tests when running manually
+      run_cypress:
+        description: Run Cypress Tests?
+        required: false
+        default: true
+        type: boolean
+
 
 jobs:
-  jekyll:
+  static-build-test:
+    name: Build and run static check scripts
     runs-on: ubuntu-latest
     steps:
       # Checkout git branch
@@ -32,3 +41,8 @@ jobs:
       - name: Run Test Scripts
         run: bash .run_static_output_tests.sh
 
+  run_cypress:
+      # If cypress is to be tested, run cypress-test job
+      name: Run Cypress Workflow
+      uses: ./.github/workflows/cypress-test.yml
+      if: ${{ github.event.inputs.run_cypress == true }}
