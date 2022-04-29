@@ -1,4 +1,4 @@
-name: Build and Test the site without deployment
+name: Build the site and run static tests on output
 
 # Controls when the workflow will run
 on:
