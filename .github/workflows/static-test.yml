@@ -8,14 +8,6 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      # Allows you to control whether to run Cypress Tests when running manually
-      run_cypress:
-        description: Run Cypress Tests?
-        required: true
-        default: true
-        type: boolean
-
 
 jobs:
   static-build-test:
@@ -40,11 +32,3 @@ jobs:
       # Run static test scripts
       - name: Run Test Scripts
         run: bash .run_static_output_tests.sh
-
-  run_cypress:
-      # If cypress is to be tested, run cypress-test job
-      name: Run Cypress Workflow
-      uses: ./.github/workflows/cypress-test.yml
-      #with:
-      #  run_cypress: ${{ inputs.run_cypress }}
-      # I can't figure out how inputs are handled on automatic runs
