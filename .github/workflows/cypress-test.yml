@@ -4,11 +4,12 @@ name: Build the site and locally run Cypress tests
 on:
   # Allows the workflow to be called from another workflow
   workflow_call:
-    run_cypress:
-      description: Run Cypress Tests?
-      required: true
-      default: true
-      type: boolean
+    inputs:
+      run_cypress:
+        description: Run Cypress Tests?
+        required: true
+        default: true
+        type: boolean
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
