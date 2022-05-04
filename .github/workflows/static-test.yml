@@ -45,4 +45,4 @@ jobs:
       # If cypress is to be tested, run cypress-test job
       name: Run Cypress Workflow
       uses: ./.github/workflows/cypress-test.yml
-      if: ${{ inputs.run_cypress }}
+      if: ${{ inputs.run_cypress != false }}
