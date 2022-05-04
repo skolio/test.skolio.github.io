@@ -2,7 +2,7 @@ name: Build and Test the site without deployment
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push events for the main branch
+  # Triggers the workflow on pull requests for the main branch
   pull_request:
     branches: [ main ]
 
@@ -16,21 +16,19 @@ jobs:
       # Checkout git branch
       - name: Checkout
         uses: actions/checkout@v3
-      # Cache gems
-      - name: Cache Gems
-        uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      # Build the site and push new state to branch gh-pages
-      - name: Build Jekyll Site
-        uses: helaili/jekyll-action@2.3.1    # Choose any one of the Jekyll Actions
-        with:                                # Some relative inputs of your action
-          keep_history: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          build_only: true
 
+      # Automatic setup of Ruby environment and dependencies
+      - name: Perform Ruby Setup
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+
+      # Build the site for static build output tests
+      - name: Build jekyll site
+        run: bundle exec jekyll build
+
+      # Run static test scripts
       - name: Run Test Scripts
-        run: bash run_tests.sh
+        run: bash .run_static_output_tests.sh
+
