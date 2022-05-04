@@ -12,7 +12,7 @@ on:
       # Allows you to control whether to run Cypress Tests when running manually
       run_cypress:
         description: Run Cypress Tests?
-        required: false
+        required: true
         default: true
         type: boolean
 
@@ -45,5 +45,6 @@ jobs:
       # If cypress is to be tested, run cypress-test job
       name: Run Cypress Workflow
       uses: ./.github/workflows/cypress-test.yml
-      with:
-        run_cypress: ${{ inputs.run_cypress }}
+      #with:
+      #  run_cypress: ${{ inputs.run_cypress }}
+      # I can't figure out how inputs are handled on automatic runs
