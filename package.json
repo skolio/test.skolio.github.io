@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Web-presentation of the Skolio App",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "cypress-gui": "cypress open"
   },
   "repository": {
     "type": "git",
